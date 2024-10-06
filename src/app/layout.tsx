@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { WeatherProvider } from '@/context/WeatherContext';
-
+import HeaderBar from '@/components/HeaderBar/HeaderBar';
+import Navbar from '@/components/Navbar/Navbar';
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist-sans',
@@ -28,7 +29,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <main className="flex  bg-blue-200 min-h-screen  ">
-          <WeatherProvider>{children}</WeatherProvider>
+          <div className="mx-auto container justify-center">
+            <WeatherProvider>
+              <HeaderBar />
+              <Navbar />
+              {children}
+            </WeatherProvider>
+          </div>
         </main>
       </body>
     </html>

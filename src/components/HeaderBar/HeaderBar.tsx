@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { useWeather } from '@/context/WeatherContext';
-
+import { useRouter } from 'next/navigation';
 const HeaderBar = () => {
+  const router = useRouter();
   const [city, setCity] = useState('');
   const { fetchWeather } = useWeather();
 
@@ -13,6 +14,7 @@ const HeaderBar = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     fetchWeather(city);
+    router.push('/today');
   };
 
   return (
