@@ -1,8 +1,13 @@
+import React from 'react';
+import HeaderBar from '@/components/HeaderBar/HeaderBar';
+import Navbar from '@/components/Navbar/Navbar';
+import Weather from '@/components/Weather/Weather';
 export default function Home() {
-  const [weather, setWeather] = useState(null);
   return (
-    <div className="bg-red-200">
-      Weather asdasdasdadasdasdasdaPp
+    <div className="mx-auto container justify-center">
+      <HeaderBar />
+      <Navbar />
+      <Weather />
     </div>
   );
 }
