@@ -1,8 +1,12 @@
 'use client';
 import React, { useState } from 'react';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+
 import { useWeather } from '@/context/WeatherContext';
 import { useRouter } from 'next/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const HeaderBar = () => {
+  const { locationData } = useWeather();
   const router = useRouter();
   const [city, setCity] = useState('');
   const { fetchWeather } = useWeather();
@@ -18,7 +22,7 @@ const HeaderBar = () => {
   };
 
   return (
-    <header className="bg-blue-500 p-4">
+    <header className="bg-blue-500 p-4 flex flex-row space-x-2 items-center justify-center">
       <form onSubmit={handleSubmit} className="flex justify-center">
         <input
           type="text"
@@ -31,6 +35,16 @@ const HeaderBar = () => {
           Search
         </button>
       </form>
+      {locationData ? (
+        <div>
+          <div>
+            <FontAwesomeIcon icon={faLocationDot} size="lg" className="mx-2" />
+            {locationData.name}, {locationData.country}
+          </div>
+        </div>
+      ) : (
+        <h1>Weather App</h1>
+      )}
     </header>
   );
 };

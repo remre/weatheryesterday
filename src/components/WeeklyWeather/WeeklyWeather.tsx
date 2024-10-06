@@ -2,8 +2,9 @@ import React from 'react';
 
 interface DailyData {
   dt: number;
-  temp: { day: number; night: number };
+  temp: { day: number; night: number; min: number; max: number };
   weather: { description: string; main: string }[];
+  rain: number;
 }
 
 interface WeeklyWeatherProps {
@@ -17,6 +18,7 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
           const date = new Date(day.dt * 1000).toLocaleDateString();
+          const rainAmount = day.rain ? `${day.rain} mm/h` : `No rain`;
           return (
             <li key={index}>
               <p>
@@ -27,6 +29,9 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
               </p>
               <p>
                 <strong>Conditions:</strong> {day.weather[0].description} ({day.weather[0].main})
+              </p>
+              <p>
+                <strong>Rain:</strong> {rainAmount}
               </p>
             </li>
           );

@@ -17,9 +17,15 @@ interface WeatherData {
     weather: { description: string; main: string }[];
   }[];
 }
+interface LocationData {
+  name: string;
+  state: string;
+  country: string;
+}
 
 interface WeatherContextProps {
   weatherData: WeatherData | null;
+  locationData: LocationData | null;
   setWeatherData: React.Dispatch<React.SetStateAction<WeatherData | null>>;
   fetchWeather: (city: string) => Promise<void>;
   loading: boolean;
@@ -30,6 +36,7 @@ const WeatherContext = createContext<WeatherContextProps | undefined>(undefined)
 
 export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [locationData, setLocationData] = useState<LocationData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,9 +45,10 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
     setError(null);
 
     try {
-      const { lat, lon } = await fetchGeoData(city);
+      const { lat, lon, name, state, country } = await fetchGeoData(city);
       const data = await fetchWeatherData(lat, lon);
       setWeatherData(data);
+      setLocationData({ name, state, country });
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -49,7 +57,9 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   return (
-    <WeatherContext.Provider value={{ weatherData, setWeatherData, fetchWeather, loading, error }}>
+    <WeatherContext.Provider
+      value={{ weatherData, locationData, setWeatherData, fetchWeather, loading, error }}
+    >
       {children}
     </WeatherContext.Provider>
   );

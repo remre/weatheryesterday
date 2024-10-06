@@ -24,6 +24,6 @@ export async function fetchGeoData(city: string) {
     throw new Error('City not found');
   }
 
-  const { lat, lon } = data[0]; // Get the latitude and longitude of the city
-  return { lat, lon };
+  const { lat, lon, name, state, country } = data[0]; // Get the latitude and longitude of the city
+  return { lat, lon, name, state, country };
 }
