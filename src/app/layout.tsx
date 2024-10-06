@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { WeatherProvider } from '@/context/WeatherContext';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -26,7 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main className="flex  bg-blue-200 min-h-screen  ">{children}</main>
+        <main className="flex  bg-blue-200 min-h-screen  ">
+          <WeatherProvider>{children}</WeatherProvider>
+        </main>
       </body>
     </html>
   );

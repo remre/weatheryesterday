@@ -1,9 +1,36 @@
-export default function HeaderBar() {
+'use client';
+import React, { useState } from 'react';
+import { useWeather } from '@/context/WeatherContext';
+
+const HeaderBar = () => {
+  const [city, setCity] = useState('');
+  const { fetchWeather } = useWeather();
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCity(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchWeather(city);
+  };
+
   return (
-    <div className="flex flex-row space-x-1 min-h-[40px] items-center bg-white ">
-      <div>logo</div>
-      <div className="w-[300px] bg-green-400">searchbar</div>
-      <div className="flex w-full text-center  justify-center">Header</div>
-    </div>
+    <header className="bg-blue-500 p-4">
+      <form onSubmit={handleSubmit} className="flex justify-center">
+        <input
+          type="text"
+          value={city}
+          onChange={handleCityChange}
+          placeholder="Enter city name"
+          className="border p-2"
+        />
+        <button type="submit" className="bg-white text-blue-500 p-2 ml-2">
+          Search
+        </button>
+      </form>
+    </header>
   );
-}
+};
+
+export default HeaderBar;
