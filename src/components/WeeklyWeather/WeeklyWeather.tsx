@@ -1,3 +1,4 @@
+import { formatDate } from '@/utils/formatdate';
 import React from 'react';
 
 interface DailyData {
@@ -17,7 +18,7 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
       <h3>Daily Forecast (Next 7 Days)</h3>
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
-          const date = new Date(day.dt * 1000).toLocaleDateString();
+          const date = formatDate(day.dt);
           const rainAmount = day.rain ? `${day.rain} mm/h` : `No rain`;
           return (
             <li key={index}>

@@ -1,3 +1,4 @@
+import { formatTime } from '@/utils/formatdate';
 import React from 'react';
 
 interface HourlyData {
@@ -16,7 +17,7 @@ const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
       <h3>Hourly Forecast (Next 9 Hours)</h3>
       <ul>
         {hourlyData.slice(0, 9).map((hour, index) => {
-          const time = new Date(hour.dt * 1000).toLocaleTimeString();
+          const time = formatTime(hour.dt);
           return (
             <li key={index}>
               <p>

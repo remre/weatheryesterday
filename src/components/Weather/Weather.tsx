@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 // import { useWeather } from '@/context/WeatherContext';
 import { getWeatherIcon } from '@/utils/WeatherIcons';
+import { formatDate } from '@/utils/formatdate';
+
 interface WeatherData {
   dt: number;
   temp: number;
@@ -17,20 +19,20 @@ interface WeatherDataProps {
     current: WeatherData;
   };
 }
-const convertUnixTimestamp = (timestamp: number): string => {
-  const date = new Date(timestamp * 1000);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-  return date.toLocaleDateString('en-US', options);
-};
+// const convertUnixTimestamp = (timestamp: number): string => {
+//   const date = new Date(timestamp * 1000);
+//   const options: Intl.DateTimeFormatOptions = {
+//     weekday: 'long',
+//     year: 'numeric',
+//     month: 'long',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//   };
+//   return date.toLocaleDateString('en-US', options);
+// };
 const Weather: React.FC<WeatherDataProps> = ({ weatherData }) => {
-  const readableDate = convertUnixTimestamp(weatherData.current.dt);
+  const readableDate = formatDate(weatherData.current.dt);
   const icon = getWeatherIcon(weatherData.current.weather[0].main);
 
   return (

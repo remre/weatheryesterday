@@ -22,6 +22,7 @@ const HeaderBar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Selected Date:', date);
     if (date) {
       await fetchPastWeather(city, date);
       router.push('/past');
