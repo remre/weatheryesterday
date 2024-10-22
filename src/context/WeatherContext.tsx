@@ -57,7 +57,7 @@ interface WeatherContextProps {
   locationData: LocationData | null;
   setWeatherData: React.Dispatch<React.SetStateAction<WeatherData | null>>;
   setPastWeatherData: React.Dispatch<React.SetStateAction<PastWeatherData | null>>; // Yeni fonksiyon
-  fetchYesterdayWeather: (city: string) => Promise<void>;
+  // fetchYesterdayWeather: (city: string) => Promise<void>;
   fetchWeather: (city: string) => Promise<void>;
   fetchPastWeather: (city: string, date: string) => Promise<void>; // Yeni fonksiyon
   loading: boolean;
@@ -76,11 +76,19 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
   const fetchWeather = async (city: string) => {
     setLoading(true);
     setError(null);
+    const date = new Date();
+    date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
+    console.log('Yesterday:', date);
+
+    // Format the date to YYYY-MM-DD
+    const formattedDate = date.toISOString().split('T')[0];
 
     try {
       const { lat, lon, name, state, country } = await fetchGeoData(city);
       const data = await fetchWeatherData(lat, lon);
+      const pastData = await fetchPastWeatherData(lat, lon, formattedDate);
       setWeatherData(data);
+      setPastWeatherData(pastData);
       setLocationData({ name, state, country });
     } catch (err: any) {
       setError(err.message);
@@ -105,49 +113,28 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
       setLoading(false);
     }
   };
-  const fetchYesterdayWeather = async (city: string) => {
-    const date = new Date();
-    date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
+  // const fetchYesterdayWeather = async (city: string) => {
+  //   const date = new Date();
+  //   date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
+  //   console.log('Yesterday:', date);
 
-    // Format the date to YYYY-MM-DD
-    const formattedDate = date.toISOString().split('T')[0];
+  //   // Format the date to YYYY-MM-DD
+  //   const formattedDate = date.toISOString().split('T')[0];
 
-    setLoading(true);
-    setError(null);
+  //   setLoading(true);
+  //   setError(null);
 
-    try {
-      const { lat, lon } = await fetchGeoData(city);
-      const data = await fetchPastWeatherData(lat, lon, formattedDate); // Fetch yesterday's weather data
+  //   try {
+  //     const { lat, lon } = await fetchGeoData(city);
+  //     const data = await fetchPastWeatherData(lat, lon, formattedDate); // Fetch yesterday's weather data
 
-      setPastWeatherData({
-        date: data.date,
-        temperature: {
-          min: data.temperature.min,
-          max: data.temperature.max,
-          afternoon: data.temperature.afternoon,
-          night: data.temperature.night,
-          evening: data.temperature.evening,
-          morning: data.temperature.morning,
-        },
-        humidity: {
-          afternoon: data.humidity.afternoon,
-        },
-        wind: {
-          max: {
-            speed: data.wind.max.speed,
-            direction: data.wind.max.direction,
-          },
-        },
-        pressure: {
-          afternoon: data.pressure.afternoon,
-        },
-      });
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     setPastWeatherData(data);
+  //   } catch (err: any) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   return (
     <WeatherContext.Provider
       value={{
@@ -158,7 +145,7 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
         setWeatherData,
         setPastWeatherData,
         fetchWeather,
-        fetchYesterdayWeather,
+        // fetchYesterdayWeather,
         fetchPastWeather, // Yeni fonksiyon
         loading,
         error,
