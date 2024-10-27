@@ -10,6 +10,7 @@ interface WeatherData {
     evening: number;
     morning: number;
   };
+  precipitation: { total: number };
   humidity: {
     afternoon: number;
   };
@@ -34,6 +35,7 @@ export const PastWeather: React.FC<{ weatherData: WeatherData }> = ({ weatherDat
           <div>Temperature (max): {weatherData.temperature.max} °C</div>
           <div>Temperature (afternoon): {weatherData.temperature.afternoon} °C</div>
           <div>Humidity (afternoon): {weatherData.humidity.afternoon}%</div>
+          <div>Precipitaion: {weatherData.precipitation.total} mm</div>
           <div>Wind Speed: {weatherData.wind.max.speed} m/s</div>
           <div>Wind Direction: {weatherData.wind.max.direction}°</div>
           <div>Pressure (afternoon): {weatherData.pressure.afternoon} hPa</div>

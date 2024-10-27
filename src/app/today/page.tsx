@@ -12,7 +12,7 @@ const Today = () => {
 
   return (
     <div>
-      {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}{' '}
+      {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
       {/* Geçmiş hava durumu verisi de burada geçiliyor */}
     </div>
   );

@@ -11,6 +11,7 @@ interface WeatherData {
     temp: number;
     feels_like: number;
     humidity: number;
+    weather_overview: string;
     weather: { description: string; main: string }[];
   };
   hourly: { dt: number; temp: number; weather: { description: string; main: string }[] }[];
@@ -30,6 +31,9 @@ interface PastWeatherData {
     night: number;
     evening: number;
     morning: number;
+  };
+  precipitation: {
+    total: number;
   };
   humidity: {
     afternoon: number;

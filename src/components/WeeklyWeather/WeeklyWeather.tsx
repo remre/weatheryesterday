@@ -19,7 +19,7 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
           const date = formatDate(day.dt);
-          const rainAmount = day.rain ? `${day.rain} mm/h` : `No rain`;
+          const rainAmount = day.rain ? `${day.rain} mm/h` : `No precipitation`;
           return (
             <li key={index}>
               <p>
@@ -32,7 +32,7 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
                 <strong>Conditions:</strong> {day.weather[0].description} ({day.weather[0].main})
               </p>
               <p>
-                <strong>Rain:</strong> {rainAmount}
+                <strong>Precipitation:</strong> {rainAmount}
               </p>
             </li>
           );
