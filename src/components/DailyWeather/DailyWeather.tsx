@@ -6,8 +6,9 @@ interface HourlyData {
   dt: number;
   temp: number;
   rain: number;
+  snow: number;
   pop: number;
-  weather: { description: string; main: string }[];
+  weather: { description: string; main: string; icon: string }[];
 }
 
 interface DailyWeatherProps {
@@ -16,12 +17,14 @@ interface DailyWeatherProps {
 
 const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
   return (
-    <div className="flex min-h-screen w-full bg-green-600 justify-center flex-row space-x-3">
-      {/* <h3>Hourly   Forecast (Next 9 Hours)</h3> */}
-      <ul>
+    <div className="flex min-h-screen w-full bg-gradient-to-br from-green-600 to-green-400 justify-center flex-col items-center p-6">
+      <h3 className="text-2xl font-bold text-white mb-4">Hourly Forecast (Next 9 Hours)</h3>
+      <ul className="">
         {hourlyData.slice(0, 9).map((hour, index) => {
           const time = formatTime(hour.dt);
-          const rainAmount = hour.rain ? `${hour.rain} mm/h` : `No precipitation`;
+          const iconUrl = `https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`;
+          const rainAmount = hour.rain ? `${hour.rain} mm/h` : ``;
+          const SnowAmount = hour.snow ? `${hour.snow} mm/h` : `No precipitation for snow`;
           return (
             <li key={index}>
               {/* <p>
@@ -50,7 +53,9 @@ const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
                   temp={hour.temp}
                   pop={hour.pop}
                   rainAmount={rainAmount}
+                  snowAmount={SnowAmount}
                   conditions={hour.weather}
+                  iconUrl={iconUrl}
                 />
               </div>
             </li>
