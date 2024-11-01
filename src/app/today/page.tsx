@@ -1,8 +1,10 @@
-// Today.tsx
+// pages/today/page.tsx
+
 'use client';
 import React from 'react';
 import { useWeather } from '@/context/WeatherContext';
 import Weather from '@/components/Weather/Weather';
+import WeatherComparison from '@/components/WeatherComparision/WeatherComparision';
 
 const Today = () => {
   const { weatherData, pastWeatherData, loading, error } = useWeather();
@@ -11,9 +13,10 @@ const Today = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center bg-blue-100">
       {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
-      {/* Geçmiş hava durumu verisi de burada geçiliyor */}
+      {/* Use the updated WeatherComparison component */}
+      {weatherData && pastWeatherData && <WeatherComparison />}
     </div>
   );
 };
