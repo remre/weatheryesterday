@@ -49,7 +49,7 @@ const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
               <div className="flex flex-col py-2">
                 <WeatherCard
                   time={time}
-                  type="Daily"
+                  type="Hourly"
                   temp={hour.temp}
                   pop={hour.pop}
                   rainAmount={rainAmount}

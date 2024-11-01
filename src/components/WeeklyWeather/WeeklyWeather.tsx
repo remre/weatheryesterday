@@ -7,7 +7,10 @@ interface DailyData {
   temp: { day: number; night: number; min: number; max: number };
   weather: { description: string; main: string; icon: string }[];
   snow: number;
+  summary: string;
   rain: number;
+  pop: number;
+  wind_speed: number;
 }
 
 interface WeeklyWeatherProps {
@@ -30,11 +33,19 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
                 <WeatherCard
                   time={date}
                   type="Daily"
-                  tempp={{ day: day.temp.day, night: day.temp.night }}
+                  tempp={{
+                    day: day.temp.day,
+                    night: day.temp.night,
+                    min: day.temp.min,
+                    max: day.temp.max,
+                  }}
                   rainAmount={rainAmount}
+                  pop={day.pop}
                   snowAmount={snowAmount}
                   conditions={day.weather}
+                  summary={day.summary}
                   iconUrl={iconUrl}
+                  windSpeed={day.wind_speed}
                 />
                 {/* <p>
                 <strong>Date:</strong> {date}

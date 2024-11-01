@@ -17,7 +17,11 @@ interface WeatherData {
   hourly: { dt: number; temp: number; weather: { description: string; main: string }[] }[];
   daily: {
     dt: number;
-    temp: { day: number; night: number };
+    rain: number;
+    snow: number;
+    wind_speed: number;
+    pop: number;
+    temp: { day: number; night: number; min: number; max: number };
     weather: { description: string; main: string }[];
   }[];
 }
