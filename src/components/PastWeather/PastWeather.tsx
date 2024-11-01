@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { WeatherCard } from '../Weather/Weather';
 interface WeatherData {
   date: string;
   temperature: {
@@ -26,19 +26,25 @@ interface WeatherData {
 }
 
 export const PastWeather: React.FC<{ weatherData: WeatherData }> = ({ weatherData }) => {
+  const rainAmount = weatherData.precipitation.total
+    ? `${weatherData.precipitation.total} mm/h`
+    : `no rain`;
   return (
     <div>
       {weatherData ? (
-        <div>
-          <div>Date: {weatherData.date}</div>
-          <div>Temperature (min): {weatherData.temperature.min} °C</div>
-          <div>Temperature (max): {weatherData.temperature.max} °C</div>
-          <div>Temperature (afternoon): {weatherData.temperature.afternoon} °C</div>
-          <div>Humidity (afternoon): {weatherData.humidity.afternoon}%</div>
-          <div>Precipitaion: {weatherData.precipitation.total} mm</div>
-          <div>Wind Speed: {weatherData.wind.max.speed} m/s</div>
-          <div>Wind Direction: {weatherData.wind.max.direction}°</div>
-          <div>Pressure (afternoon): {weatherData.pressure.afternoon} hPa</div>
+        <div className="mt-4 flex w-full items-center justify-center">
+          <WeatherCard
+            time={weatherData.date}
+            type="Yesterday"
+            tempp={{
+              max: weatherData.temperature.max,
+              min: weatherData.temperature.min,
+              day: weatherData.temperature.afternoon,
+              night: weatherData.temperature.night,
+            }}
+            rainAmount={rainAmount}
+            windSpeed={weatherData.wind.max.speed}
+          />
         </div>
       ) : (
         <div>No past weather data available.</div>
