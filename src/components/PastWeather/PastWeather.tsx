@@ -1,31 +1,8 @@
 import React from 'react';
-import { WeatherCard } from '../Weather/Weather';
-interface WeatherData {
-  date: string;
-  temperature: {
-    min: number;
-    max: number;
-    afternoon: number;
-    night: number;
-    evening: number;
-    morning: number;
-  };
-  precipitation: { total: number };
-  humidity: {
-    afternoon: number;
-  };
-  wind: {
-    max: {
-      speed: number;
-      direction: number;
-    };
-  };
-  pressure: {
-    afternoon: number;
-  };
-}
+import { WeatherCard } from '../WeatherCard/WeatherCard';
+import { PastWeatherData } from '@/types/types';
 
-export const PastWeather: React.FC<{ weatherData: WeatherData }> = ({ weatherData }) => {
+export const PastWeather: React.FC<{ weatherData: PastWeatherData }> = ({ weatherData }) => {
   const rainAmount = weatherData.precipitation.total
     ? `${weatherData.precipitation.total} mm/h`
     : `no rain`;

@@ -28,11 +28,12 @@ interface WeatherData {
   daily: {
     dt: number;
     rain: number;
+    summary: string;
     snow: number;
     wind_speed: number;
     pop: number;
     temp: { day: number; night: number; min: number; max: number };
-    weather: { description: string; main: string }[];
+    weather: { description: string; main: string; icon: string }[];
   }[];
 }
 

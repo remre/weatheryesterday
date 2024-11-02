@@ -1,21 +1,7 @@
 import { formatDate } from '@/utils/formatdate';
 import React from 'react';
-import { WeatherCard } from '../Weather/Weather';
-
-interface DailyData {
-  dt: number;
-  temp: { day: number; night: number; min: number; max: number };
-  weather: { description: string; main: string; icon: string }[];
-  snow: number;
-  summary: string;
-  rain: number;
-  pop: number;
-  wind_speed: number;
-}
-
-interface WeeklyWeatherProps {
-  dailyData: DailyData[];
-}
+import { WeatherCard } from '../WeatherCard/WeatherCard';
+import { WeeklyWeatherProps } from '@/types/types';
 
 const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
   return (
