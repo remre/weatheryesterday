@@ -1,7 +1,7 @@
 'use client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { getWeatherIcon } from '@/utils/WeatherIcons';
+// import { getWeatherIcon } from '@/utils/WeatherIcons';
 import { formatDate } from '@/utils/formatdate';
 import Image from 'next/image';
 
@@ -11,35 +11,35 @@ interface WeatherData {
   feels_like: number;
   humidity: number;
   wind_speed: number;
-
+  rain?: { '1h'?: number };
   weather: { description: string; main: string; icon?: string }[];
 }
-interface PastWeatherData {
-  date: string;
-  temperature: {
-    min: number;
-    max: number;
-    afternoon: number;
-    night: number;
-    evening: number;
-    morning: number;
-  };
-  precipitation: {
-    total: number;
-  };
-  humidity: {
-    afternoon: number;
-  };
-  wind: {
-    max: {
-      speed: number;
-      direction: number;
-    };
-  };
-  pressure: {
-    afternoon: number;
-  };
-}
+// interface PastWeatherData {
+//   date: string;
+//   temperature: {
+//     min: number;
+//     max: number;
+//     afternoon: number;
+//     night: number;
+//     evening: number;
+//     morning: number;
+//   };
+//   precipitation: {
+//     total: number;
+//   };
+//   humidity: {
+//     afternoon: number;
+//   };
+//   wind: {
+//     max: {
+//       speed: number;
+//       direction: number;
+//     };
+//   };
+//   pressure: {
+//     afternoon: number;
+//   };
+// }
 
 interface WeatherCardProps {
   time?: string; // For hourly weather
@@ -80,8 +80,8 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
 }) => {
   return (
     <div
-      className={`p-6 rounded-lg shadow-md bg-white bg-opacity-90 transition-transform transform justify-center  flex ${
-        type === 'Hourly' ? 'flex-row items-center space-x-2' : 'flex-col'
+      className={` bg-white p-6 rounded-lg shadow-md  bg-opacity-90 transition-transform transform justify-center  flex ${
+        type === 'Hourly' ? 'flex-row items-center justify-center space-x-2' : 'flex-col'
       } space-y-2 `}
     >
       {/* <h1>{type} Weather</h1>
@@ -99,12 +99,12 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
           <p className="text-3xl font-bold text-blue-600">{Math.round(temp)}°C</p>
         )}
         {iconUrl && (
-          <Image src={iconUrl} alt="Weather Icon" width={40} height={40} className=" w-14 mx-4" />
+          <Image src={iconUrl} alt="Weather Icon" width={40} height={40} className=" w-16 mx-4" />
         )}
         {tempp && (
           <div className="flex-col flex">
             <div className="flex flex-row">
-              <p className="text-3xl font-bold text-yellow-400">
+              <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
                 <strong>Temperature:</strong> {Math.round(tempp.day)}°C /
               </p>
               <p className="text-xl font-bold text-blue-900  flex items-end">
@@ -147,16 +147,16 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
           <strong>Wind:</strong> {windSpeed} km/h
         </p>
       )}
+
+      {rainAmount && (
+        <p className="text-lg text-gray-600">
+          <strong>Rain: </strong>
+          {rainAmount}
+        </p>
+      )}
       {pop !== undefined && (
         <p className="text-lg text-gray-600">
           <strong>Rain Probability:</strong> {pop * 100}%
-        </p>
-      )}
-      {rainAmount && (
-        <p className="text-lg text-gray-600">
-          {' '}
-          <strong>Rain: </strong>
-          {rainAmount}
         </p>
       )}
       {snowAmount && (
@@ -192,25 +192,33 @@ interface WeatherDataProps {
   weatherData: {
     current: WeatherData;
   };
-  pastWeatherData?: PastWeatherData | null; // Geçmiş hava durumu verileri için yeni alan
+  // pastWeatherData?: PastWeatherData | null;
 }
 
-const Weather: React.FC<WeatherDataProps> = ({ weatherData, pastWeatherData }) => {
+const Weather: React.FC<WeatherDataProps> = ({ weatherData }) => {
   const currentDate = new Date(weatherData.current.dt * 1000);
   const dayBeforeDate = new Date(currentDate);
   dayBeforeDate.setDate(currentDate.getDate() - 1);
   const readableDateToday = formatDate(currentDate.getTime() / 1000);
-  const readableDateYesterday = formatDate(dayBeforeDate.getTime() / 1000);
+  // const readableDateYesterday = formatDate(dayBeforeDate.getTime() / 1000);
   // const icon = getWeatherIcon(weatherData.current.weather[0].main);
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
-
+  const rainAmount =
+    weatherData.current.rain && weatherData.current.rain['1h']
+      ? `${weatherData.current.rain['1h']} mm/h`
+      : ``;
+  console.log(
+    'rainamont ',
+    weatherData.current.rain ? weatherData.current.rain['1h'] : 'No rain data',
+  );
   return (
-    <section className="flex  justify-center flex-row space-x-3">
+    <section className="flex  justify-center flex-row space-x-3 ">
       {weatherData ? (
         <div className="flex flex-col ">
           <WeatherCard
             time={readableDateToday}
             type="Current"
+            rainAmount={rainAmount}
             temp={weatherData.current.temp}
             feelsLike={weatherData.current.feels_like}
             humidity={weatherData.current.humidity}

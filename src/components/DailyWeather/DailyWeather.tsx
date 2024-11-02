@@ -5,9 +5,10 @@ import { WeatherCard } from '../Weather/Weather';
 interface HourlyData {
   dt: number;
   temp: number;
-  rain: number;
+  rain?: { '1h'?: number };
   snow: number;
   pop: number;
+
   weather: { description: string; main: string; icon: string }[];
 }
 
@@ -17,13 +18,13 @@ interface DailyWeatherProps {
 
 const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
   return (
-    <section className="flex min-h-screen w-full justify-center flex-col items-center p-6">
+    <section className="flex  w-full justify-center flex-col items-center p-6">
       <h3 className="text-2xl font-bold text-black mb-4">Hourly Forecast (Next 9 Hours)</h3>
       <ul className="">
         {hourlyData.slice(0, 9).map((hour, index) => {
           const time = formatTime(hour.dt);
           const iconUrl = `https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`;
-          const rainAmount = hour.rain ? `${hour.rain} mm/h` : ``;
+          const rainAmount = hour.rain ? `${hour.rain['1h']} mm/h` : `no rain`;
           const SnowAmount = hour.snow ? `${hour.snow} mm/h` : `No precipitation for snow`;
           return (
             <li key={index}>
