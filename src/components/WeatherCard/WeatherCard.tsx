@@ -40,7 +40,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
         {iconUrl && (
           <Image src={iconUrl} alt="Weather Icon" width={40} height={40} className=" w-16 mx-4" />
         )}
-        {tempp && (
+        {tempp?.day && tempp.night && (
           <div className="flex-col flex">
             <div className="flex flex-row">
               <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
@@ -57,7 +57,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
           </div>
         )}
       </div>
-      {tempp?.max && (
+      {tempp?.max && tempp?.min && (
         <div className="flex flex-row">
           <p className="text-xl font-bold text-black  ">Min: &nbsp;{Math.round(tempp.min)} °C</p>
           <p className="text-xl font-bold text-black  ">
