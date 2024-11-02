@@ -20,7 +20,7 @@ interface WeatherData {
   hourly: {
     dt: number;
     temp: number;
-    rain: number;
+    rain?: { '1h'?: number };
     snow: number;
     pop: number;
     weather: { description: string; main: string; icon: string }[];
