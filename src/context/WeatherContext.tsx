@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // weathercontext.tsx
 'use client';
 import React, { createContext, useState, useContext, ReactNode } from 'react';
@@ -11,6 +12,7 @@ interface WeatherData {
     temp: number;
     feels_like: number;
     humidity: number;
+    rain: { '1h': number };
     weather_overview: string;
     weather: { description: string; main: string }[];
   };

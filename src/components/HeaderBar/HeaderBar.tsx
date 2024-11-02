@@ -72,7 +72,7 @@ const HeaderBar = () => {
 
             {showInfo && (
               <div className="absolute top-full left-0 mt-2 w-64 p-2 bg-white text-blue-800 rounded-md shadow-lg z-10">
-                Use this if you need to display weather for a specific date.
+                Use this if you need to display weather for a specific date. It`s optional.
               </div>
             )}
           </div>

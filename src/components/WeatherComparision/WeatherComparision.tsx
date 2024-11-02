@@ -1,7 +1,7 @@
 // components/WeatherComparison/WeatherComparison.tsx
 
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { useWeather } from '@/context/WeatherContext';
 import Image from 'next/image';
 
@@ -165,19 +165,10 @@ const WeatherComparison: React.FC = () => {
     todayData.precipitation,
     todayData.windSpeed,
   );
-  const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
-
-  const handleImageLoad = (src: string) => {
-    setLoadedImages((prev) => ({ ...prev, [src]: true }));
-  };
-
-  const handleImageError = (src: string) => {
-    setLoadedImages((prev) => ({ ...prev, [src]: false }));
-  };
 
   return (
-    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4 ">
-      <div className="opacity-80 transition-opacity duration-300">
+    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4  ">
+      <div className="opacity-80 transition-opacity duration-300 space-y-4">
         <h2 className="text-xl font-bold mb-4">Weather Comparison</h2>
         <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
 

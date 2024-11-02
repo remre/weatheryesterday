@@ -13,12 +13,12 @@ const Today = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <section className="flex flex-col items-center justify-start bg-blue-100 p-6 bg-opacity-20 min-h-screen">
+    <section className="flex flex-col items-center justify-start p-6 bg-opacity-20">
       {weatherData ? (
         <>
           <h1 className="flex text-2xl font-bold mb-4">Current Weather </h1>
 
-          <div className="flex flex-row space-x-2 items-start justify-center">
+          <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2 items-center sm:items-start justify-center">
             {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
             {weatherData && pastWeatherData && <WeatherComparison />}
           </div>
