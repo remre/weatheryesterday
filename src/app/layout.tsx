@@ -9,20 +9,6 @@ import Navbar from '@/components/Navbar/Navbar';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-// const geistSans = localFont({
-//   src: './fonts/GeistVF.woff',
-//   variable: '--font-geist-sans',
-//   weight: '100 900',
-// });
-// const geistMono = localFont({
-//   src: './fonts/GeistMonoVF.woff',
-//   variable: '--font-geist-mono',
-//   weight: '100 900',
-// });
-// const ebGaramond = EB_Garamond({
-//   subsets: ['latin'],
-//   weight: '400',
-// });
 const pridi = Pridi({
   subsets: ['latin'],
   weight: '400',

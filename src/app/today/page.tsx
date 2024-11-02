@@ -19,7 +19,7 @@ const Today = () => {
           <h1 className="flex text-2xl font-bold mb-4">Current Weather </h1>
 
           <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2 items-center sm:items-start justify-center">
-            {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
+            {weatherData && <Weather weatherData={weatherData} />}
             {weatherData && pastWeatherData && <WeatherComparison />}
           </div>
         </>
