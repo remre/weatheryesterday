@@ -19,7 +19,7 @@ interface WeeklyWeatherProps {
 
 const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
   return (
-    <div className="flex min-h-screen w-full bg-gray-100 justify-center flex-col items-center p-6">
+    <section className="flex min-h-screen w-full justify-center flex-col items-center p-6">
       <h3 className="text-2xl font-bold text-black mb-4">Daily Forecast (Next 7 Days)</h3>
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
@@ -64,7 +64,7 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

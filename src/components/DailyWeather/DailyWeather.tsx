@@ -17,8 +17,8 @@ interface DailyWeatherProps {
 
 const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
   return (
-    <div className="flex min-h-screen w-full bg-gradient-to-br from-green-600 to-green-400 justify-center flex-col items-center p-6">
-      <h3 className="text-2xl font-bold text-white mb-4">Hourly Forecast (Next 9 Hours)</h3>
+    <section className="flex min-h-screen w-full justify-center flex-col items-center p-6">
+      <h3 className="text-2xl font-bold text-black mb-4">Hourly Forecast (Next 9 Hours)</h3>
       <ul className="">
         {hourlyData.slice(0, 9).map((hour, index) => {
           const time = formatTime(hour.dt);
@@ -62,7 +62,7 @@ const DailyWeather: React.FC<DailyWeatherProps> = ({ hourlyData }) => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 
