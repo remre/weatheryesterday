@@ -3,8 +3,6 @@ import React from 'react';
 // import Navbar from '@/components/Navbar/Navbar';
 // import Weather from '@/components/Weather/Weather';
 export default function Home() {
-  const apiKey = process.env.API_KEY;
-  console.log('API Key:', apiKey);
   return (
     <div className="mx-auto container justify-center flex items-center flex-col pt-10 text-xl font-bold">
       <h1>Welcome to the Weather App</h1>

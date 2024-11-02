@@ -24,7 +24,7 @@ const HeaderBar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Selected Date:', date);
+    // console.log('Selected Date:', date);
     if (!city) {
       setLocationData(null); // Clear location data if city input is empty
     }

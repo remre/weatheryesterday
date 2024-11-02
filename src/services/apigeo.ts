@@ -1,6 +1,6 @@
 export async function fetchGeoData(city: string) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-  console.log('api keyyy', API_KEY);
+
   const response = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`,
   );
