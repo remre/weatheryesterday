@@ -71,6 +71,20 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
           <strong>Feels Like:</strong> {Math.round(feelsLike)}°C
         </p>
       )}
+      {conditions && (
+        <div className=" items-center  flex flex-row">
+          <strong>Conditions:</strong>
+          <span className="ml-2 min-w-20 ">{conditions[0].description}</span>
+          {/* ({conditions[0].main}) */}
+
+          {/* <FontAwesomeIcon
+              icon={getWeatherIcon(conditions[0].main)}
+              width={70}
+              height={70}
+              className="ml-2"
+            /> */}
+        </div>
+      )}
       {humidity !== undefined && (
         <p className="text-lg text-gray-600">
           <strong>Humidity:</strong> {humidity}%
@@ -108,20 +122,6 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
         <p className="text-lg font-semibold text-gray-700">
           <strong>Summary:</strong> {summary}
         </p>
-      )}
-      {conditions && (
-        <div className=" items-center  flex flex-row">
-          <strong>Conditions:</strong>
-          <span className="ml-2 min-w-20 ">{conditions[0].description}</span>
-          {/* ({conditions[0].main}) */}
-
-          {/* <FontAwesomeIcon
-              icon={getWeatherIcon(conditions[0].main)}
-              width={70}
-              height={70}
-              className="ml-2"
-            /> */}
-        </div>
       )}
     </div>
   );

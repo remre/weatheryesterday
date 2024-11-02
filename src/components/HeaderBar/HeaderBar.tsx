@@ -35,6 +35,9 @@ const HeaderBar = () => {
       await fetchWeather(city);
       router.push('/today');
     }
+    // Reset input fields
+    setCity('');
+    setDate('');
   };
 
   return (
