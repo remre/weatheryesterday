@@ -1,7 +1,7 @@
 // services/api.ts
 
 export async function fetchWeatherData(lat: number, lon: number) {
-  const API_KEY = '782742040ffd775b09705d608647eb18';
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
   const response = await fetch(
     `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
