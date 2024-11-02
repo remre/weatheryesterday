@@ -13,11 +13,20 @@ const Today = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-col items-center justify-center bg-blue-100">
-      {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
-      {/* Use the updated WeatherComparison component */}
-      {weatherData && pastWeatherData && <WeatherComparison />}
-    </div>
+    <section className="flex flex-col items-center justify-start bg-blue-100 p-6 bg-opacity-20 min-h-screen">
+      {weatherData ? (
+        <>
+          <h1 className="flex text-2xl font-bold mb-4">Current Weather </h1>
+
+          <div className="flex flex-row space-x-2 items-start justify-center">
+            {weatherData && <Weather weatherData={weatherData} pastWeatherData={pastWeatherData} />}
+            {weatherData && pastWeatherData && <WeatherComparison />}
+          </div>
+        </>
+      ) : (
+        <div>Use Search bar to look weather</div>
+      )}
+    </section>
   );
 };
 

@@ -1,4 +1,3 @@
-// src/components/HeaderBar/HeaderBar.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -9,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 const HeaderBar = () => {
-  const { locationData, fetchWeather, fetchPastWeather } = useWeather();
+  const { locationData, fetchWeather, fetchPastWeather, setLocationData } = useWeather();
   const router = useRouter();
   const [city, setCity] = useState('');
   const [date, setDate] = useState('');
@@ -25,6 +24,9 @@ const HeaderBar = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Selected Date:', date);
+    if (!city) {
+      setLocationData(null); // Clear location data if city input is empty
+    }
     if (date) {
       await fetchPastWeather(city, date);
       router.push('/past');
@@ -35,7 +37,7 @@ const HeaderBar = () => {
   };
 
   return (
-    <header className="bg-blue-500 p-4 flex flex-row items-center justify-between">
+    <header className="bg-blue-400 p-4 flex flex-row items-center justify-between rounded-md">
       <div className="flex">
         <Link href="/">Weather Weather</Link>
       </div>
@@ -46,16 +48,16 @@ const HeaderBar = () => {
             value={city}
             onChange={handleCityChange}
             placeholder="Enter city name"
-            className="border p-2"
+            className="border p-2 rounded-md"
           />
           <input
             type="date"
             value={date}
             onChange={handleDateChange}
             placeholder="Enter date"
-            className="border p-2"
+            className="border p-2 rounded-md"
           />
-          <button type="submit" className="bg-white text-blue-500 p-2">
+          <button type="submit" className="bg-white text-blue-500 p-2 rounded-md">
             Search
           </button>
         </form>

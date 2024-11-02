@@ -14,7 +14,15 @@ interface WeatherData {
     weather_overview: string;
     weather: { description: string; main: string }[];
   };
-  hourly: { dt: number; temp: number; weather: { description: string; main: string }[] }[];
+
+  hourly: {
+    dt: number;
+    temp: number;
+    rain: number;
+    snow: number;
+    pop: number;
+    weather: { description: string; main: string; icon: string }[];
+  }[];
   daily: {
     dt: number;
     rain: number;
@@ -63,6 +71,7 @@ interface WeatherContextProps {
   weatherData: WeatherData | null;
   pastWeatherData: PastWeatherData | null; // Yeni alan
   locationData: LocationData | null;
+  setLocationData: React.Dispatch<React.SetStateAction<LocationData | null>>;
   setWeatherData: React.Dispatch<React.SetStateAction<WeatherData | null>>;
   setPastWeatherData: React.Dispatch<React.SetStateAction<PastWeatherData | null>>; // Yeni fonksiyon
   // fetchYesterdayWeather: (city: string) => Promise<void>;
@@ -149,7 +158,7 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
         weatherData,
         pastWeatherData, // Yeni alan
         locationData,
-
+        setLocationData,
         setWeatherData,
         setPastWeatherData,
         fetchWeather,

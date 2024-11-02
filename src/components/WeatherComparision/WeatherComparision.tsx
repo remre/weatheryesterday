@@ -138,12 +138,17 @@ const WeatherComparison: React.FC = () => {
   );
 
   return (
-    <div className="p-6 rounded-lg shadow-md bg-white mt-4">
-      <h2 className="text-xl font-bold mb-4">Weather Comparison</h2>
+    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4 hover:bg-black hover:text-white transition-all duration-300">
+      <div className="opacity-80  transition-opacity duration-300">
+        <h2 className="text-xl font-bold mb-4">Weather Comparison</h2>
+        <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
 
-      <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
-      <p className="text-lg">Wind Speed: {windSpeedDescription}.</p>
-      <p className="text-lg">Precipitation: {precipitationDescription}</p>
+        <p className="text-lg">Wind Speed: {windSpeedDescription}.</p>
+        <p className="text-lg">Precipitation: {precipitationDescription}</p>
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <h2 className="text-2xl font-bold opacity-25">Weather Comparison</h2>
+      </div>
     </div>
   );
 };

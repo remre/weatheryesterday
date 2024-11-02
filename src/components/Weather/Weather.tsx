@@ -82,7 +82,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
     <div
       className={`p-6 rounded-lg shadow-md bg-white bg-opacity-90 transition-transform transform justify-center  flex ${
         type === 'Hourly' ? 'flex-row items-center space-x-2' : 'flex-col'
-      } space-y-2`}
+      } space-y-2 `}
     >
       {/* <h1>{type} Weather</h1>
       <div className="flex flex-col"> */}
@@ -205,7 +205,7 @@ const Weather: React.FC<WeatherDataProps> = ({ weatherData, pastWeatherData }) =
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
 
   return (
-    <div className="flex  justify-center flex-row space-x-3">
+    <section className="flex  justify-center flex-row space-x-3">
       {weatherData ? (
         <div className="flex flex-col ">
           <WeatherCard
@@ -220,7 +220,7 @@ const Weather: React.FC<WeatherDataProps> = ({ weatherData, pastWeatherData }) =
           />
 
           {/* Geçmiş hava durumu verileri burada gösterilecek */}
-          {pastWeatherData && (
+          {/* {pastWeatherData && (
             <div className="mt-4">
               <WeatherCard
                 time={readableDateYesterday}
@@ -235,12 +235,12 @@ const Weather: React.FC<WeatherDataProps> = ({ weatherData, pastWeatherData }) =
                 windSpeed={pastWeatherData.wind.max.speed}
               />
             </div>
-          )}
+          )} */}
         </div>
       ) : (
         <p>Please enter a city to see the weather data.</p>
       )}
-    </div>
+    </section>
   );
 };
 
