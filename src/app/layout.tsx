@@ -1,28 +1,28 @@
 'use client';
-import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+// import type { Metadata } from 'next';
+// import localFont from 'next/font/local';
 import './globals.css';
-import { Pridi, EB_Garamond } from 'next/font/google';
+import { Pridi } from 'next/font/google';
 import { WeatherProvider } from '@/context/WeatherContext';
 import HeaderBar from '@/components/HeaderBar/HeaderBar';
 import Navbar from '@/components/Navbar/Navbar';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
-const ebGaramond = EB_Garamond({
-  subsets: ['latin'],
-  weight: '400',
-});
+// const geistSans = localFont({
+//   src: './fonts/GeistVF.woff',
+//   variable: '--font-geist-sans',
+//   weight: '100 900',
+// });
+// const geistMono = localFont({
+//   src: './fonts/GeistMonoVF.woff',
+//   variable: '--font-geist-mono',
+//   weight: '100 900',
+// });
+// const ebGaramond = EB_Garamond({
+//   subsets: ['latin'],
+//   weight: '400',
+// });
 const pridi = Pridi({
   subsets: ['latin'],
   weight: '400',
@@ -40,7 +40,6 @@ export default function RootLayout({
 }>) {
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
@@ -50,7 +49,7 @@ export default function RootLayout({
     const handleRouteChangeComplete = () => {
       setTimeout(() => {
         setIsTransitioning(false);
-      }, 500); // Animation duration
+      }, 100); // Animation duration
     };
 
     // Dinamik olarak sayfa geçişlerini dinlemek için push ve replace yöntemlerini override ediyoruz
@@ -75,12 +74,6 @@ export default function RootLayout({
     };
   }, [router]);
 
-  useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.style.minHeight = `${contentRef.current.offsetHeight}px`;
-    }
-  }, [isTransitioning]);
-
   return (
     <html lang="en">
       <body className={`${pridi.className} antialiased`}>
@@ -89,10 +82,7 @@ export default function RootLayout({
             <WeatherProvider>
               <HeaderBar />
               <Navbar />
-              <div
-                ref={contentRef}
-                className={`transition-container ${isTransitioning ? 'fade-out' : 'fade-in'}`}
-              >
+              <div className={`transition-container ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
                 {isTransitioning ? null : children}
               </div>
             </WeatherProvider>
