@@ -1,8 +1,9 @@
 // components/WeatherComparison/WeatherComparison.tsx
 
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useWeather } from '@/context/WeatherContext';
+import Image from 'next/image';
 
 interface ComparableWeatherData {
   date: Date;
@@ -19,10 +20,9 @@ const WeatherComparison: React.FC = () => {
   const { weatherData, pastWeatherData } = useWeather();
 
   if (!weatherData || !pastWeatherData) {
-    return null; // Do not render if data is unavailable
+    return null;
   }
 
-  // Function to map today's weather data to ComparableWeatherData
   const mapTodayWeatherData = (): ComparableWeatherData => {
     const dailyData = weatherData.daily[0];
     const averageTemp = (dailyData.temp.max + dailyData.temp.min) / 2;
@@ -39,7 +39,6 @@ const WeatherComparison: React.FC = () => {
     };
   };
 
-  // Function to map yesterday's weather data to ComparableWeatherData
   const mapYesterdayWeatherData = (): ComparableWeatherData => {
     const averageTemp = (pastWeatherData.temperature.max + pastWeatherData.temperature.min) / 2;
 
@@ -120,7 +119,32 @@ const WeatherComparison: React.FC = () => {
     }
   };
 
-  // Map the data and perform comparisons
+  const getOutfitRecommendations = (
+    temperature: number,
+    precipitation: number,
+    windSpeed: number,
+  ) => {
+    const outfits = [];
+
+    if (temperature < 10) {
+      outfits.push('/images/coat.svg');
+    } else if (temperature >= 10 && temperature < 20) {
+      outfits.push('/images/jacket.svg');
+    } else {
+      outfits.push('/images/tshirt.svg');
+    }
+
+    if (precipitation > 0) {
+      outfits.push('/images/raincoat.svg');
+    }
+
+    if (windSpeed > 15) {
+      outfits.push('/images/windbreaker.svg');
+    }
+
+    return outfits;
+  };
+
   const todayData = mapTodayWeatherData();
   const yesterdayData = mapYesterdayWeatherData();
 
@@ -129,7 +153,6 @@ const WeatherComparison: React.FC = () => {
   );
   const windSpeedDifference = todayData.windSpeed - yesterdayData.windSpeed;
 
-  // Generate descriptive overviews
   const temperatureDescription = getTemperatureDescription(temperatureDifference);
   const windSpeedDescription = getWindSpeedDescription(windSpeedDifference);
   const precipitationDescription = getPrecipitationDescription(
@@ -137,17 +160,40 @@ const WeatherComparison: React.FC = () => {
     yesterdayData.precipitation,
   );
 
+  const outfitRecommendations = getOutfitRecommendations(
+    todayData.temperature.average,
+    todayData.precipitation,
+    todayData.windSpeed,
+  );
+  const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
+
+  const handleImageLoad = (src: string) => {
+    setLoadedImages((prev) => ({ ...prev, [src]: true }));
+  };
+
+  const handleImageError = (src: string) => {
+    setLoadedImages((prev) => ({ ...prev, [src]: false }));
+  };
+
   return (
-    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4 hover:bg-black hover:text-white transition-all duration-300">
-      <div className="opacity-80  transition-opacity duration-300">
+    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4 ">
+      <div className="opacity-80 transition-opacity duration-300">
         <h2 className="text-xl font-bold mb-4">Weather Comparison</h2>
         <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
 
         <p className="text-lg">Wind Speed: {windSpeedDescription}.</p>
         <p className="text-lg">Precipitation: {precipitationDescription}</p>
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-        <h2 className="text-2xl font-bold opacity-25">Weather Comparison</h2>
+
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold">Recommended Outfits:</h3>
+          <div className="flex space-x-4 mt-2">
+            {outfitRecommendations.map((src, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <Image src={src} alt="Outfit Recommendation" width={50} height={50} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
