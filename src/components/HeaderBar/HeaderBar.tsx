@@ -55,7 +55,7 @@ const HeaderBar = () => {
             value={city}
             onChange={handleCityChange}
             placeholder="Enter city name"
-            className="border p-2 rounded-md w-full md:w-auto"
+            className="border p-2 rounded-md w-full md:w-auto text-gray-600"
           />
           <div className="relative flex items-center w-full md:w-auto space-x-2">
             <FontAwesomeIcon
@@ -70,7 +70,7 @@ const HeaderBar = () => {
               value={date}
               onChange={handleDateChange}
               placeholder="Enter date"
-              className="border p-2 rounded-md w-full md:w-auto"
+              className="border p-2 rounded-md w-full md:w-auto text-gray-600"
             />
 
             {showInfo && (
