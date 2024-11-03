@@ -62,6 +62,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <title>Smart Weather App</title>
+      </head>
       <body className={`${pridi.className} antialiased`}>
         <main className="flex bg-blue-50 min-h-screen">
           <div className="mx-auto container justify-center mt-4">
