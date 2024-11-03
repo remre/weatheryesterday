@@ -19,7 +19,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
 }) => {
   return (
     <div
-      className={` bg-white p-6 rounded-lg shadow-md  bg-opacity-90 transition-transform transform justify-center  flex ${
+      className={` bg-white p-6 rounded-lg shadow-md  bg-opacity-90 justify-center  flex ${
         type === 'Hourly' ? 'flex-row items-center justify-center space-x-2' : 'flex-col'
       } space-y-2 `}
     >
@@ -43,10 +43,10 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
         {tempp?.day && tempp.night && (
           <div className="flex-col flex">
             <div className="flex flex-row">
-              <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
-                <strong>Temperature:</strong> {Math.round(tempp.day)}°C /
+              <p className="text-xl sm:text-3xl font-bold text-yellow-400">
+                <strong>Temp:</strong> {Math.round(tempp.day)}°C /
               </p>
-              <p className="text-xl font-bold text-blue-900  flex items-end">
+              <p className="text-md sm:text-xl  font-bold text-blue-900  flex  items-end">
                 &nbsp;{Math.round(tempp.night)} °C
               </p>
             </div>
@@ -74,7 +74,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
       {conditions && (
         <div className=" items-center  flex flex-row">
           <strong>Conditions:</strong>
-          <span className="ml-2 min-w-20 ">{conditions[0].description}</span>
+          <span className="ml-2 min-w-20 text-gray-600 ">{conditions[0].description}</span>
           {/* ({conditions[0].main}) */}
 
           {/* <FontAwesomeIcon

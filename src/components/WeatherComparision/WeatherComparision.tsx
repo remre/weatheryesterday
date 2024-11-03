@@ -168,15 +168,15 @@ const WeatherComparison: React.FC = () => {
 
   return (
     <div className="relative p-6 rounded-lg shadow-md bg-white mt-4  ">
-      <div className="opacity-80 transition-opacity duration-300 space-y-4">
-        <h2 className="text-xl font-bold mb-4">Weather Comparison</h2>
+      <div className=" text-gray-600 space-y-4">
+        <h2 className="text-xl font-bold mb-4 text-gray-600">Weather Comparison</h2>
         <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
 
-        <p className="text-lg">Wind Speed: {windSpeedDescription}.</p>
-        <p className="text-lg">Precipitation: {precipitationDescription}</p>
+        <p className="text-lg text-gray-600">Wind Speed: {windSpeedDescription}.</p>
+        <p className="text-lg text-gray-600">Precipitation: {precipitationDescription}</p>
 
         <div className="mt-4">
-          <h3 className="text-lg font-semibold">Recommended Outfits:</h3>
+          <h3 className="text-lg font-semibold text-gray-600">Recommended Outfits:</h3>
           <div className="flex space-x-4 mt-2">
             {outfitRecommendations.map((src, index) => (
               <div key={index} className="flex flex-col items-center">
