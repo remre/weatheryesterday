@@ -1,16 +1,16 @@
 'use client';
 import React from 'react';
-import WeeklyWeather from '@/components/WeeklyWeather/WeeklyWeather';
+import DailyWeather from '@/components/DailyWeather/DailyWeather';
 
 import { useWeather } from '@/context/WeatherContext';
 
-const Weekly = () => {
+const Daily = () => {
   const { weatherData, loading, error } = useWeather();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  return <div>{weatherData && <WeeklyWeather dailyData={weatherData.daily} />}</div>;
+  return <div>{weatherData && <DailyWeather dailyData={weatherData.daily} />}</div>;
 };
 
-export default Weekly;
+export default Daily;

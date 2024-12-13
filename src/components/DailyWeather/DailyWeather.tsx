@@ -1,9 +1,9 @@
 import { formatDate } from '@/utils/formatdate';
 import React from 'react';
 import { WeatherCard } from '../WeatherCard/WeatherCard';
-import { WeeklyWeatherProps } from '@/types/types';
+import { DailyWeatherProps } from '@/types/types';
 
-const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
+const DailyWeather: React.FC<DailyWeatherProps> = ({ dailyData }) => {
   return (
     <section className="flex  w-full justify-center flex-col items-center p-6">
       <h3 className="text-2xl font-bold text-black mb-4">Daily Forecast (Next 7 Days)</h3>
@@ -54,4 +54,4 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ dailyData }) => {
   );
 };
 
-export default WeeklyWeather;
+export default DailyWeather;

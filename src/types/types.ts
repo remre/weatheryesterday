@@ -114,7 +114,7 @@ interface DailyData {
   wind_speed: number;
 }
 
-export interface WeeklyWeatherProps {
+export interface DailyWeatherProps {
   dailyData: DailyData[];
 }
 
