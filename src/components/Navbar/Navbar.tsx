@@ -6,7 +6,7 @@ export default function NavBar() {
       <Link href="/today" className="text-white hover:text-gray-200">
         Today
       </Link>
-      <Link href="/daily" className="text-white hover:text-gray-200">
+      <Link href="/hourly" className="text-white hover:text-gray-200">
         Hourly
       </Link>
       <Link href="/weekly" className="text-white hover:text-gray-200">

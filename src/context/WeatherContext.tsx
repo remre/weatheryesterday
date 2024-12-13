@@ -21,7 +21,7 @@ interface WeatherData {
     dt: number;
     temp: number;
     rain?: { '1h'?: number };
-    snow: number;
+    snow?: { '1h'?: number };
     pop: number;
     weather: { description: string; main: string; icon: string }[];
   }[];

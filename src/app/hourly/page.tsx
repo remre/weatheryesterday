@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 import { useWeather } from '@/context/WeatherContext';
-import DailyWeather from '@/components/DailyWeather/DailyWeather';
+import HourlyWeather from '@/components/HourlyWeather/HourlyWeather';
 
-const Daily = () => {
+const Hourly = () => {
   const { weatherData, loading, error } = useWeather();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  return <div>{weatherData && <DailyWeather hourlyData={weatherData.hourly} />}</div>;
+  return <div>{weatherData && <HourlyWeather hourlyData={weatherData.hourly} />}</div>;
 };
 
-export default Daily;
+export default Hourly;

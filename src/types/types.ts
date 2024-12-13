@@ -72,13 +72,13 @@ export interface HourlyData {
   dt: number;
   temp: number;
   rain?: { '1h'?: number };
-  snow: number;
+  snow?: { '1h'?: number };
   pop: number;
 
   weather: { description: string; main: string; icon: string }[];
 }
 
-export interface DailyWeatherProps {
+export interface HourlyWeatherProps {
   hourlyData: HourlyData[];
 }
 
@@ -117,3 +117,15 @@ interface DailyData {
 export interface WeeklyWeatherProps {
   dailyData: DailyData[];
 }
+
+export interface HourlyWeatherCardProps {
+  time: string;
+  temp: number;
+  pop: number;
+  rainAmount?: string;
+  snowAmount?: string;
+  conditions: { description: string; main: string }[];
+  iconUrl: string;
+}
+
+// Add other existing types here...
