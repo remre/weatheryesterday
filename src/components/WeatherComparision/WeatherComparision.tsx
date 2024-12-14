@@ -119,6 +119,8 @@ const WeatherComparison: React.FC = () => {
     }
   };
 
+  // utils/weatherUtils.ts
+
   const getOutfitRecommendations = (
     temperature: number,
     precipitation: number,
@@ -127,19 +129,19 @@ const WeatherComparison: React.FC = () => {
     const outfits = [];
 
     if (temperature < 10) {
-      outfits.push('/images/coat.svg');
+      outfits.push({ src: '/images/coat.svg', name: 'Coat' });
     } else if (temperature >= 10 && temperature < 20) {
-      outfits.push('/images/jacket.svg');
+      outfits.push({ src: '/images/jacket.svg', name: 'Jacket' });
     } else {
-      outfits.push('/images/tshirt.svg');
+      outfits.push({ src: '/images/tshirt.svg', name: 'T-shirt' });
     }
 
     if (precipitation > 0) {
-      outfits.push('/images/raincoat.svg');
+      outfits.push({ src: '/images/raincoat.svg', name: 'Raincoat' });
     }
 
     if (windSpeed > 15) {
-      outfits.push('/images/windbreaker.svg');
+      outfits.push({ src: '/images/windbreaker.svg', name: 'Windbreaker' });
     }
 
     return outfits;
@@ -168,19 +170,25 @@ const WeatherComparison: React.FC = () => {
 
   return (
     <div className="relative p-6 rounded-lg shadow-md bg-white mt-4  ">
-      <div className=" text-gray-600 space-y-4">
+      <div className=" space-y-4">
         <h2 className="text-xl font-bold mb-4 text-gray-600">Weather Comparison</h2>
-        <p className="text-lg">Temperature: Today is {temperatureDescription}.</p>
+        <p className="body-regular">Temperature: Today is {temperatureDescription}.</p>
 
-        <p className="text-lg text-gray-600">Wind Speed: {windSpeedDescription}.</p>
-        <p className="text-lg text-gray-600">Precipitation: {precipitationDescription}</p>
+        <p className="body-regular">Wind Speed: {windSpeedDescription}.</p>
+        <p className="body-regular">Precipitation: {precipitationDescription}</p>
 
         <div className="mt-4">
-          <h3 className="text-lg font-semibold text-gray-600">Recommended Outfits:</h3>
+          <h3 className="body-regular font-semibold">Recommended Outfits:</h3>
           <div className="flex space-x-4 mt-2">
-            {outfitRecommendations.map((src, index) => (
+            {outfitRecommendations.map((outfit, index) => (
               <div key={index} className="flex flex-col items-center">
-                <Image src={src} alt="Outfit Recommendation" width={50} height={50} />
+                <Image
+                  src={outfit.src}
+                  alt={outfit.name}
+                  title={outfit.name}
+                  width={50}
+                  height={50}
+                />
               </div>
             ))}
           </div>
