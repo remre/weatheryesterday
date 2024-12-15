@@ -18,11 +18,11 @@ export const DailyWeatherCard: React.FC<WeatherCardProps> = ({
     temp !== undefined ? (temp < 0 ? 'cold-weather' : temp > 30 ? 'hot-weather' : '') : '';
   const rainClass = rainAmount && parseFloat(rainAmount) > 10 ? 'rainy-weather' : '';
   const snowClass = snowAmount && parseFloat(snowAmount) > 10 ? 'snowy-weather' : '';
-  const windClass = windSpeed !== undefined && windSpeed > 2 ? 'windy-weather' : '';
+  const windClass = windSpeed !== undefined && windSpeed > 20 ? 'windy-weather' : '';
 
   return (
     <div className="lg:max-w-3xl bg-white p-6 rounded-lg shadow-md bg-opacity-90 flex flex-col lg:grid lg:grid-cols-2 lg:gap-4">
-      {time && <p className="text-lg font-semibold text-gray-700 mr-2">{time}</p>}
+      {time && <p className="title-second mr-2">{time}</p>}
       <hr className="my-4 border-gray-300 lg:col-span-2" />
       <div className="flex flex-row items-center pt-2 lg:col-span-2 ">
         {temp !== undefined && (
