@@ -37,7 +37,7 @@ section {
     @apply !text-purple-500;
   }
   .windy-weather {
-    @apply !text-yellow-500;
+    @apply !text-orange-600;
   }
 }
 
@@ -46,7 +46,7 @@ section {
 }
 
 .title-second {
-  @apply text-xl font-bold text-black mb-4;
+  @apply text-xl font-bold text-black mb-4  flex;
   @apply text-shadow;
 }
 

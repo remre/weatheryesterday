@@ -21,7 +21,7 @@ export const DailyWeatherCard: React.FC<WeatherCardProps> = ({
 
   return (
     <div className="lg:max-w-3xl bg-white p-6 rounded-lg shadow-md bg-opacity-90 flex flex-col lg:grid lg:grid-cols-2 lg:gap-4">
-      {time && <p className="title-second mr-2">{time}</p>}
+      {time && <p className="title-second !mb-0 mr-2">{time}</p>}
       <hr className="my-4 border-gray-300 lg:col-span-2" />
       <div className="flex flex-row items-center pt-2 lg:col-span-2 ">
         {temp !== undefined && (
