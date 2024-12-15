@@ -2,36 +2,89 @@
 
 [WeatherCombineApp](https://weatheryesterday.vercel.app/) is a weather application that provides current weather information, outfit recommendations based on the weather, and a comparison of today's weather with yesterday's weather.
 
-## Getting Started
+## Table of Contents
 
-First, install the dependencies:
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Setup Instructions](#setup-instructions)
+- [Contributing](#contributing)
+- [Live Demo](#live-demo)
+
+## Introduction
+
+The WeatherCombineApp is written in TypeScript as a Next.js project to show weather information using the OpenWeather API. The unique feature of this app is that it allows users to see the current weather along with a comparison to yesterday's weather, helping users understand how the weather will be today compared to yesterday. Additionally, users can find outfit recommendations based on temperature, wind, and precipitation (rain or snow).
+
+## Technologies Used
+
+### Core Libraries
+
+- **Next.js** - Provides server-side rendering and built-in optimization.
+- **React** and **TypeScript** - Used for building reusable, maintainable components.
+- **Tailwind CSS** - Ensures responsive and efficient styling.
+- **FontAwesome** - For icons.
+- **OpenWeather API** - For fetching weather data.
+
+### Development Tools
+
+- **ESLint** and **Prettier** - For code consistency and formatting.
+
+## Features
+
+### Weather Information
+
+- **Current Weather**: Displays the current weather conditions based on the user's location.
+- **Hourly and Daily Forecast**: Provides detailed hourly and daily weather forecasts.
+
+### Weather Comparison
+
+- **Comparison with Yesterday**: Compares today's weather with yesterday's weather, highlighting differences in temperature, wind speed, and precipitation.
+
+### Outfit Recommendations
+
+- **Outfit Suggestions**: Based on the current weather conditions, the app suggests appropriate outfits to wear.
+
+## Setup Instructions
+
+1. Clone the repository:
 
 ```bash
-npm install
+git clone https://github.com/remre/weathercombineapp.git
 ```
 
-Then, run the development server:
+2. Install dependencies:
+
+```sh
+  cd weathercombineapp
+  npm install
+```
+
+3. Set up the environment variables. Create a .env file in the root directory and add your OpenWeather API key:
+
+```env
+NEXT_PUBLIC_API_KEY=your_openweather_api_key
+```
+
+## Running the Application
+
+To start the application in development:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to view the app.
 
-## Technologies Used
+To build the application in production:
 
-- [Next.js](https://nextjs.org)
-- [React](https://reactjs.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [TypeScript](https://www.typescriptlang.org)
-- [FontAwesome](https://fontawesome.com)
-- [OpenWeather API](https://openweathermap.org/api)
-
-## Features
-
-- **Outfit Recommendations**: Based on the current weather conditions, the app suggests appropriate outfits to wear.
-- **Weather Comparison with Yesterday**: The app provides a comparison of today's weather with yesterday's weather, highlighting differences in temperature, wind speed, and precipitation.
+```bash
+npm run build
+```
 
 ## Contributing
 
 This project is open for contributions. Feel free to fork the repository and submit pull requests.
+
+## Live Demo
+
+You can check out the live demo of the application [here](https://weatheryesterday.vercel.app/).
