@@ -21,7 +21,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
     temp !== undefined ? (temp < 0 ? 'cold-weather' : temp > 30 ? 'hot-weather' : '') : '';
   const rainClass = rainAmount && parseFloat(rainAmount) > 10 ? 'rainy-weather' : '';
   const snowClass = snowAmount && parseFloat(snowAmount) > 10 ? 'snowy-weather' : '';
-  const windClass = windSpeed !== undefined && windSpeed > 2 ? 'windy-weather' : '';
+  const windClass = windSpeed !== undefined && windSpeed > 20 ? 'windy-weather' : '';
 
   return (
     <div
