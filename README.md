@@ -44,6 +44,10 @@ The WeatherCombineApp is written in TypeScript as a Next.js project to show weat
 
 - **Outfit Suggestions**: Based on the current weather conditions, the app suggests appropriate outfits to wear.
 
+### Color Indicators
+
+- **Extreme Weather Conditions**: Uses color indicators for extreme conditions such as high/low temperatures, heavy rain, snow, and strong winds.
+
 ## Setup Instructions
 
 1. Clone the repository:
@@ -84,7 +88,3 @@ npm run build
 ## Contributing
 
 This project is open for contributions. Feel free to fork the repository and submit pull requests.
-
-## Live Demo
-
-You can check out the live demo of the application [here](https://weatheryesterday.vercel.app/).
