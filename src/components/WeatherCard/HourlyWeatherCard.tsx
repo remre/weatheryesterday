@@ -19,7 +19,6 @@ export const HourlyWeatherCard: React.FC<HourlyWeatherCardProps> = ({
     setIsExpanded(!isExpanded);
   };
 
-  // Dinamik sınıfları belirleme
   const tempClass =
     temp !== undefined ? (temp < 0 ? 'cold-weather' : temp > 30 ? 'hot-weather' : '') : '';
   const rainClass = rainAmount && parseFloat(rainAmount) > 10 ? 'rainy-weather' : '';

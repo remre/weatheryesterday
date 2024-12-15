@@ -15,20 +15,17 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   snowAmount,
   pop,
   iconUrl,
-  type,
 }) => {
   // Dinamik sınıfları belirleme
   const tempClass =
     temp !== undefined ? (temp < 0 ? 'cold-weather' : temp > 30 ? 'hot-weather' : '') : '';
   const rainClass = rainAmount && parseFloat(rainAmount) > 10 ? 'rainy-weather' : '';
   const snowClass = snowAmount && parseFloat(snowAmount) > 10 ? 'snowy-weather' : '';
-  const windClass = windSpeed !== undefined && windSpeed > 20 ? 'windy-weather' : '';
+  const windClass = windSpeed !== undefined && windSpeed > 2 ? 'windy-weather' : '';
 
   return (
     <div
-      className={`bg-white p-6 rounded-lg shadow-md bg-opacity-90 justify-center flex ${
-        type === 'Hourly' ? 'flex-row items-center justify-center space-x-2' : 'flex-col'
-      } space-y-4`}
+      className={`bg-white p-6 rounded-lg shadow-md bg-opacity-90 justify-center flex flex-col space-y-4`}
     >
       {time && <p className=" title-second  mr-2">{time}</p>}
       <hr className="my-4 border-gray-300" />
