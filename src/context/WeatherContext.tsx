@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// weathercontext.tsx
 'use client';
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { fetchWeatherData, fetchPastWeatherData } from '@/services/api';
@@ -88,9 +87,10 @@ const WeatherContext = createContext<WeatherContextProps | undefined>(undefined)
 
 export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [pastWeatherData, setPastWeatherData] = useState<PastWeatherData | null>(null); // Yeni durum
+  const [pastWeatherData, setPastWeatherData] = useState<PastWeatherData | null>(null);
   const [locationData, setLocationData] = useState<LocationData | null>(null);
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState<string | null>(null);
 
   const fetchWeather = async (city: string) => {
@@ -100,7 +100,6 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
     date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
     console.log('Yesterday:', date);
 
-    // Format the date to YYYY-MM-DD
     const formattedDate = date.toISOString().split('T')[0];
 
     try {
@@ -133,40 +132,17 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
       setLoading(false);
     }
   };
-  // const fetchYesterdayWeather = async (city: string) => {
-  //   const date = new Date();
-  //   date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
-  //   console.log('Yesterday:', date);
-
-  //   // Format the date to YYYY-MM-DD
-  //   const formattedDate = date.toISOString().split('T')[0];
-
-  //   setLoading(true);
-  //   setError(null);
-
-  //   try {
-  //     const { lat, lon } = await fetchGeoData(city);
-  //     const data = await fetchPastWeatherData(lat, lon, formattedDate); // Fetch yesterday's weather data
-
-  //     setPastWeatherData(data);
-  //   } catch (err: any) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   return (
     <WeatherContext.Provider
       value={{
         weatherData,
-        pastWeatherData, // Yeni alan
+        pastWeatherData,
         locationData,
         setLocationData,
         setWeatherData,
         setPastWeatherData,
         fetchWeather,
-        // fetchYesterdayWeather,
-        fetchPastWeather, // Yeni fonksiyon
+        fetchPastWeather,
         loading,
         error,
       }}

@@ -11,10 +11,10 @@ const Past = () => {
 
   return (
     <div>
-      {pastWeatherData ? ( // pastWeatherData var mı kontrolü
-        <PastWeather weatherData={pastWeatherData} /> // pastWeatherData'yı gönderiyoruz
+      {pastWeatherData ? (
+        <PastWeather weatherData={pastWeatherData} />
       ) : (
-        <p>No past weather data available.</p> // Eğer veri yoksa mesaj göster
+        <p>No past weather data available.</p>
       )}
     </div>
   );

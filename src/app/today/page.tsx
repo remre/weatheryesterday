@@ -1,5 +1,3 @@
-// pages/today/page.tsx
-
 'use client';
 import React from 'react';
 import { useWeather } from '@/context/WeatherContext';

@@ -1,5 +1,3 @@
-// components/WeatherComparison/WeatherComparison.tsx
-
 'use client';
 import React from 'react';
 import { useWeather } from '@/context/WeatherContext';
@@ -118,8 +116,6 @@ const WeatherComparison: React.FC = () => {
       }
     }
   };
-
-  // utils/weatherUtils.ts
 
   const getOutfitRecommendations = (
     temperature: number,

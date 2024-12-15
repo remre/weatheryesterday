@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export async function fetchGeoData(city: string) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
