@@ -44,6 +44,10 @@ The WeatherCombineApp is written in TypeScript as a Next.js project to show weat
 
 - **Outfit Suggestions**: Based on the current weather conditions, the app suggests appropriate outfits to wear.
 
+### Optional Date Selection
+
+- **Past Weather Display**: Allows users to select a date range to display past weather information.
+
 ### Color Indicators
 
 - **Extreme Weather Conditions**: Uses color indicators for extreme conditions such as high/low temperatures, heavy rain, snow, and strong winds.
