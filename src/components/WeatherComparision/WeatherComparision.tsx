@@ -170,8 +170,8 @@ const WeatherComparison: React.FC = () => {
 
   return (
     <div className="relative p-6 rounded-lg shadow-md bg-white mt-4  ">
-      <div className=" space-y-4">
-        <h2 className="text-xl font-bold mb-4 text-gray-600">Weather Comparison</h2>
+      <div className=" space-y-6">
+        <h2 className="title-second">Weather Comparison</h2>
         <p className="body-regular">Temperature: Today is {temperatureDescription}.</p>
 
         <p className="body-regular">Wind Speed: {windSpeedDescription}.</p>
@@ -186,8 +186,8 @@ const WeatherComparison: React.FC = () => {
                   src={outfit.src}
                   alt={outfit.name}
                   title={outfit.name}
-                  width={50}
-                  height={50}
+                  width={80}
+                  height={80}
                 />
               </div>
             ))}

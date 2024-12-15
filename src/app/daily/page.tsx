@@ -10,7 +10,20 @@ const Daily = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  return <div>{weatherData && <DailyWeather dailyData={weatherData.daily} />}</div>;
+  return (
+    <section className="flex flex-col items-center justify-start p-6 bg-opacity-20">
+      {weatherData ? (
+        <>
+          <div>
+            <DailyWeather dailyData={weatherData.daily} />
+          </div>
+          ;
+        </>
+      ) : (
+        <div>Use Search bar to look weather</div>
+      )}
+    </section>
+  );
 };
 
 export default Daily;

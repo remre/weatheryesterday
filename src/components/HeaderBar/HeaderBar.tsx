@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import { faLocationDot, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { useWeather } from '@/context/WeatherContext';
@@ -55,7 +53,7 @@ const HeaderBar = () => {
             value={city}
             onChange={handleCityChange}
             placeholder="Enter city name"
-            className="border p-2 rounded-md w-full md:w-auto text-gray-600"
+            className="border p-2 rounded-md w-full md:w-auto body-regular"
           />
           <div className="relative flex items-center w-full md:w-auto space-x-2">
             <FontAwesomeIcon
@@ -70,7 +68,7 @@ const HeaderBar = () => {
               value={date}
               onChange={handleDateChange}
               placeholder="Enter date"
-              className="border p-2 rounded-md w-full md:w-auto text-gray-600"
+              className="border p-2 rounded-md w-full md:w-auto body-regular"
             />
 
             {showInfo && (

@@ -1,12 +1,12 @@
 import { formatDate } from '@/utils/formatdate';
 import React from 'react';
-import { WeatherCard } from '../WeatherCard/WeatherCard';
+import { DailyWeatherCard } from '../WeatherCard/DailyWeatherCard';
 import { DailyWeatherProps } from '@/types/types';
 
 const DailyWeather: React.FC<DailyWeatherProps> = ({ dailyData }) => {
   return (
     <section className="flex  w-full justify-center flex-col items-center p-6">
-      <h3 className="text-2xl font-bold text-black mb-4">Daily Forecast (Next 7 Days)</h3>
+      <h3 className="title-first mb-4">Daily Forecast (Next 7 Days)</h3>
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
           const date = formatDate(day.dt);
@@ -16,7 +16,7 @@ const DailyWeather: React.FC<DailyWeatherProps> = ({ dailyData }) => {
           return (
             <li key={index}>
               <div className="flex flex-col py-2">
-                <WeatherCard
+                <DailyWeatherCard
                   time={date}
                   type="Daily"
                   tempp={{
