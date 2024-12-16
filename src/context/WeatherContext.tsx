@@ -98,7 +98,7 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
     setError(null);
     const date = new Date();
     date.setDate(date.getDate() - 1); // Correctly set the date to yesterday
-    console.log('Yesterday:', date);
+    // console.log('Yesterday:', date);
 
     const formattedDate = date.toISOString().split('T')[0];
 
@@ -121,11 +121,12 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
     setError(null);
 
     try {
-      const { lat, lon } = await fetchGeoData(city);
+      const { lat, lon, name, state, country } = await fetchGeoData(city);
       const data = await fetchPastWeatherData(lat, lon, date);
 
       // Map the API response to our PastWeatherData structure
       setPastWeatherData(data);
+      setLocationData({ name, state, country });
     } catch (err: any) {
       setError(err.message);
     } finally {
