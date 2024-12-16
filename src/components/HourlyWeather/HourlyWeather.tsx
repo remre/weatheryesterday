@@ -6,7 +6,7 @@ import { HourlyWeatherProps } from '@/types/types';
 const HourlyWeather: React.FC<HourlyWeatherProps> = ({ hourlyData }) => {
   return (
     <section className="flex w-full justify-center flex-col items-center p-6">
-      <h3 className="title-first mb-4">Hourly Forecast (Next 9 Hours)</h3>
+      <h3 className="title-first mb-4">Hourly Forecast for Next 9 Hours</h3>
       <ul className="">
         {hourlyData.slice(0, 9).map((hour, index) => {
           const time = formatTime(hour.dt);

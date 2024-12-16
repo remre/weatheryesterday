@@ -6,7 +6,7 @@ import { DailyWeatherProps } from '@/types/types';
 const DailyWeather: React.FC<DailyWeatherProps> = ({ dailyData }) => {
   return (
     <section className="flex  w-full justify-center flex-col items-center p-6">
-      <h3 className="title-first mb-4">Daily Forecast (Next 7 Days)</h3>
+      <h3 className="title-first mb-4">Daily Forecast for Next 7 Days</h3>
       <ul>
         {dailyData.slice(0, 7).map((day, index) => {
           const date = formatDate(day.dt);
