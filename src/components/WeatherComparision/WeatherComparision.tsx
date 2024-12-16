@@ -2,6 +2,7 @@
 import React from 'react';
 import { useWeather } from '@/context/WeatherContext';
 import Image from 'next/image';
+import { getOutfitRecommendations } from '../OutfitRecommendation/OutfitRecommendation';
 
 interface ComparableWeatherData {
   date: Date;
@@ -117,32 +118,6 @@ const WeatherComparison: React.FC = () => {
     }
   };
 
-  const getOutfitRecommendations = (
-    temperature: number,
-    precipitation: number,
-    windSpeed: number,
-  ) => {
-    const outfits = [];
-
-    if (temperature < 10) {
-      outfits.push({ src: '/images/coat.svg', name: 'Coat' });
-    } else if (temperature >= 10 && temperature < 20) {
-      outfits.push({ src: '/images/jacket.svg', name: 'Jacket' });
-    } else {
-      outfits.push({ src: '/images/tshirt.svg', name: 'T-shirt' });
-    }
-
-    if (precipitation > 0) {
-      outfits.push({ src: '/images/raincoat.svg', name: 'Raincoat' });
-    }
-
-    if (windSpeed > 15) {
-      outfits.push({ src: '/images/windbreaker.svg', name: 'Windbreaker' });
-    }
-
-    return outfits;
-  };
-
   const todayData = mapTodayWeatherData();
   const yesterdayData = mapYesterdayWeatherData();
 
@@ -165,7 +140,7 @@ const WeatherComparison: React.FC = () => {
   );
 
   return (
-    <div className="relative p-6 rounded-lg shadow-md bg-white mt-4  ">
+    <div className="relative p-6 rounded-lg shadow-md bg-white mt-2 ">
       <div className=" space-y-6">
         <h2 className="title-second">Weather Comparison</h2>
         <p className="body-regular">Temperature: Today is {temperatureDescription}.</p>

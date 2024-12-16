@@ -20,7 +20,7 @@ body {
 }
 
 section {
-  @apply rounded-md mt-4;
+  @apply rounded-md mt-2;
 }
 
 @layer utilities {
